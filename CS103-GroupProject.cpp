@@ -127,6 +127,13 @@ void donorMenu() {
 
     case 2:
 
+        std::cout << "\nDonating blood has benefits for your emotional and physical health.\n";
+        std::cout << "A 2017 studyTrusted Source suggests that regular blood donations are associated with increased risk of heart disease possibly due to unfavorable cholesterol levels\n";
+        std::cout << "Blood donation is safe for healthy adults. There’s no risk of contracting disease. New, sterile equipment is used for each donor.\n";
+
+    case 3:
+
+
 
 
     default:
@@ -187,7 +194,7 @@ bool recipientLogin() {
 
                 currentRes = resList[i];
                 currentDonor = userDonor();
-                return true;
+                recipientLogin();
 
             }
 
@@ -233,7 +240,7 @@ bool donorLogin() {
 
                 currentDonor = donorList[i];
                 currentRes = userRes();
-                return true;
+                donorMenu();
 
             }
 
@@ -327,6 +334,8 @@ void donorRegistration() {
     userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
 
     donorList[registeredDonors] = newUser;
+
+
 
     registeredDonors++;
 
