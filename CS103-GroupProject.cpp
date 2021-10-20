@@ -35,7 +35,7 @@ struct userDonor
     userDonor() {};
 
     userDonor(std::string fName, std::string lName, std::string date, std::string nat, std::string eth, std::string gen, std::string healthCon, std::string bloodG, std::string contactN, std::string em, std::string physAdd, std::string prevD, std::string user, std::string pass) {
-    
+
         firstName = fName;
         lastName = lName;
         dob = date;
@@ -50,7 +50,7 @@ struct userDonor
         prevDonate = prevD;
         username = user;
         password = pass;
-    
+
     }
 
 };
@@ -76,7 +76,7 @@ struct userRes
     userRes() {}
 
     userRes(std::string recip, std::string physAdd, std::string em, std::string contactN, std::string val, std::string user, std::string pass) {
-    
+
         recipient = recip;
         physAddress = physAdd;
         email = em;
@@ -84,7 +84,7 @@ struct userRes
         validationStatus = val;
         username = user;
         password = pass;
-    
+
     }
 
 };
@@ -100,42 +100,120 @@ int registeredRes = 0;
 userDonor currentDonor;
 userRes currentRes;
 
+int loginAttempts = 0;
+
 // Global/Field Variables *****************************************************************
 
-// Introduction
+void donorMenu() {
 
-void blank() {
+    int choice;
 
-    
+    std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
+    std::cin >> choice;
+
+    switch (choice)
+    {
+
+        // Procedure to donate blood:
+
+    case 1:
+
+        std::cout << "\nA blood donation can take up to 60 minutes (includes registration, donation and recovery).\n";
+        std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
+        std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
+
+
+        //Benefits of blood donations
+
+    case 2:
+
+
+
+    default:
+        break;
+    }
 
 }
+
+void resMenu() {
+
+
+
+}
+
+void adminMenu() {
+
+
+
+}
+
+// Introduction
 
 void introduction() {
 
     std::cout << "\n\t    The Blood Bank of New Zealand\n\n";
 
-    std::cout << "*****************************************************\n\n";
-    std::cout << "*                      About Us                     *\n\n";
-    std::cout << "* We are a New Zealand organisation that is aimming *\n\n";
-    std::cout << "* to help get people who are in need of blood. Any  *\n\n";
-    std::cout << "* donations we recieve is given to people in need!  *\n\n";
-    std::cout << "*                                                   *\n\n";
-    std::cout << "*****************************************************\n\n";
-
-    std::cout << "*****************************************************\n\n";
-    std::cout << "*                     Contact                       *\n\n";
-    std::cout << "*           Phone Number: 022 196 9532              *\n\n";
-    std::cout << "*           Address: 68 Mohaka Street               *\n\n";
-    std::cout << "*           Open: Saturdays - Sundays               *\n\n";
-    std::cout << "*                                                   *\n\n";
-    std::cout << "*****************************************************\n\n";
-
+    std::cout << "*****************************************************\n";
+    std::cout << "*                      About Us:                    *\n";
+    std::cout << "* We are a New Zealand organisation that is aimming *\n";
+    std::cout << "* to help get people who are in need of blood. Any  *\n";
+    std::cout << "* donations we recieve is given to people in need!  *\n";
+    std::cout << "*                                                   *\n";
+    std::cout << "*                     Contact                       *\n";
+    std::cout << "*           Phone Number: 022 196 9532              *\n";
+    std::cout << "*           Address: 68 Mohaka Street               *\n";
+    std::cout << "*           Open: Saturdays - Sundays               *\n";
+    std::cout << "*                                                   *\n";
+    std::cout << "*****************************************************\n";
 
 }
 
-int loginAttempts = 0;
+bool recipientLogin() {
 
-void login() {
+    std::string username;
+    std::string password;
+
+    std::cout << "\nPlease enter your Username: ";
+    std::cin >> username;
+
+    std::cout << "\nPlease enter your Password: ";
+    std::cin >> password;
+
+    for (int i = 0; i < size; i++) {
+
+        if (resList[i].username == username) {
+
+            if (resList[i].password == password) {
+
+                currentRes = resList[i];
+                currentDonor = userDonor();
+                return true;
+
+            }
+
+        }
+
+    }
+
+    loginAttempts++;
+
+    if (loginAttempts >= 3) {
+
+        std::cout << "\n\nToo many incorrect attempts. You have been returned to the Initial Menu ";
+        loginAttempts = 0;
+        return false;
+
+    }
+    else {
+
+        recipientLogin();
+
+    }
+
+    return false;
+}
+
+bool donorLogin() {
 
     std::string username;
     std::string password;
@@ -147,54 +225,48 @@ void login() {
     std::cin >> password;
 
 
-    for (int i = 0; i < size;i++) {
-    
-        if (donorList[i].username == username) {
-            
-            if (donorList[i].password == password) {
-            
-                currentDonor = donorList[i];
-                currentRes = userRes();
-            
-            }
-
-        
-        }
-    
-    }
-
     for (int i = 0; i < size; i++) {
 
-        if (resList[i].username == username) {
+        if (donorList[i].username == username) {
 
-            if (resList[i].password == password) {
+            if (donorList[i].password == password) {
 
-                currentRes = resList[i];
-                currentDonor = userDonor();
+                currentDonor = donorList[i];
+                currentRes = userRes();
+                return true;
 
             }
 
+
         }
 
-    }
-
-    if (loginAttempts > 3) {
-    
-        std::cout << "\n\nToo many incorrect attempts. Please exit the console. ";
-        loginAttempts++;
-        exit;
-        abort();
-    
-    }
-    else {
-    
-        login();
-    
     }
 
     loginAttempts++;
 
+    if (loginAttempts >= 3) {
+
+        std::cout << "\n\nToo many incorrect attempts. You have been returned to the Initial Menu ";
+        loginAttempts = 0;
+        return false;
+
+    }
+    else {
+
+        donorLogin();
+
+    }
+
+    return false;
+
 }
+
+bool adminLogin() {
+
+    return false;
+
+}
+
 
 void donorRegistration() {
 
@@ -292,7 +364,7 @@ void recipientRegistration() {
     std::cout << "\nEnter your desired Password ";
     std::cin >> password;
 
-    userRes newUser = userRes(recipient,physAddress,email,contactNum,validationStatus,username,password);
+    userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
 
     resList[registeredRes] = newUser;
 
@@ -305,26 +377,87 @@ void recipientRegistration() {
 
 void initialMenu() {
 
+    std::cout << "\n\n";
+
     std::cout << "*****************************************************\n\n";
     std::cout << "*                     Menu                          *\n\n";
     std::cout << "*                Enter 1 to Login                   *\n\n";
     std::cout << "*               Enter 2 to Register                 *\n\n";
     std::cout << "*****************************************************\n\n";
 
-    int choice;
+    int firstChoice;
 
-    std::cin >> choice;
+    std::cin >> firstChoice;
 
     std::cout << std::endl;
 
-    switch (choice)
+    switch (firstChoice)
     {
 
     case 1: // Login
 
-        login();
+        std::cout << "\n\t    Please Select your user type\n\n";
 
-    case 2: // Registration
+        std::cout << "*****************************************************\n";
+        std::cout << "*                  1.)Recipient                     *\n";
+        std::cout << "*                  2.)Donor                         *\n";
+        std::cout << "*                  3.)AdminRecipient                *\n";
+        std::cout << "*****************************************************\n";
+
+        int loginTypeChoice;
+
+        std::cin >> loginTypeChoice;
+
+        switch (loginTypeChoice)
+        {
+
+        case 1:
+
+            if (recipientLogin() == true) {
+
+                resMenu();
+
+            }
+            else {
+
+                initialMenu();
+
+            }
+
+        case 2:
+
+            if (donorLogin() == true) {
+
+                donorMenu();
+
+            }
+            else {
+
+                initialMenu();
+
+            }
+
+        case 3:
+
+            if (adminLogin() == true) {
+
+                adminMenu();
+
+            }
+            else {
+
+                initialMenu();
+
+            }
+
+        default:
+            break;
+        }
+
+        // Registration
+    case 2:
+
+        std::cout << "\n";
 
         std::cout << "           Are you a Donor or Recipient?\n";
         std::cout << "*****************************************************\n\n";
@@ -332,13 +465,13 @@ void initialMenu() {
         std::cout << "*               Enter 2 for Recipient               *\n\n";
         std::cout << "*****************************************************\n\n";
 
-        int choice;
+        int registrationTypeChoice;
 
-        std::cin >> choice;
+        std::cin >> registrationTypeChoice;
 
         std::cout << "\n\n";
 
-        switch (choice)
+        switch (registrationTypeChoice)
         {
 
         case 1:
@@ -354,6 +487,7 @@ void initialMenu() {
         default:
             break;
         }
+
 
     default:
         break;
