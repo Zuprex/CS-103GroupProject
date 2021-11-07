@@ -1,8 +1,9 @@
 // The Group Project will be based on the NZ Blood Bank System.
-
-
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
+using namespace std;
 
 // Objects
 
@@ -93,8 +94,10 @@ struct userRes
 // Global/Field Variables *****************************************************************
 
 const int size = 5;
+
 userDonor donorList[size];
 userRes resList[size];
+
 int registeredDonors = 0;
 int registeredRes = 0;
 
@@ -107,6 +110,100 @@ std::ofstream recFile;
 
 // Global/Field Variables *****************************************************************
 
+
+void readDonorFiles() {
+
+    // Variables:
+
+    std::string line;
+
+    // New Donor User
+
+    std::string firstName;
+    std::string lastName;
+    std::string dob;
+    std::string nationality;
+    std::string ethnicity;
+    std::string gender;
+    std::string healthConditions;
+    std::string bloodGroup;
+    std::string contactNum;
+    std::string email;
+    std::string physAddress;
+    std::string prevDonate;
+    std::string username;
+    std::string password;
+
+    ifstream inFile("donorFile.csv", ios::in);
+
+    while (getline(inFile, line)) {
+
+        stringstream seperatedLine(line);
+
+        getline(seperatedLine, firstName);
+        getline(seperatedLine, lastName);
+        getline(seperatedLine, dob);
+        getline(seperatedLine, nationality);
+        getline(seperatedLine, ethnicity);
+        getline(seperatedLine, gender);
+        getline(seperatedLine, healthConditions);
+        getline(seperatedLine, bloodGroup);
+        getline(seperatedLine, contactNum);
+        getline(seperatedLine, email);
+        getline(seperatedLine, physAddress);
+        getline(seperatedLine, prevDonate);
+        getline(seperatedLine, username);
+        getline(seperatedLine, password);
+
+        userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
+
+        donorList[registeredDonors] = newUser;
+
+        registeredDonors++;
+
+    }
+
+
+}
+
+void readRecFiles() {
+
+    // Variables:
+
+    std::string line;
+
+    // New Rec User
+
+    std::string recipient;
+    std::string physAddress;
+    std::string email;
+    std::string contactNum;
+    std::string validationStatus;
+    std::string username;
+    std::string password;
+
+    ifstream inFile("recFile.csv", ios::in);
+
+    while (getline(inFile, line)) {
+
+        stringstream seperatedLine(line);
+
+        getline(seperatedLine, recipient);
+        getline(seperatedLine, physAddress);
+        getline(seperatedLine, email);
+        getline(seperatedLine, contactNum);
+        getline(seperatedLine, validationStatus);
+        getline(seperatedLine, username);
+        getline(seperatedLine, password);
+
+        userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
+
+        resList[registeredRes] = newUser;
+
+        registeredRes++;
+    }
+
+}
 
 void donorMenu() {
     std::cout << "\n\t Donor Menu\n\n";
@@ -184,6 +281,8 @@ void resMenu() {
 
 }
 
+
+//EST
 void adminMenu() {
 
 
@@ -604,7 +703,7 @@ void initialMenu() {
 int main() 
 {
 
-     introduction();
+    introduction();
     initialMenu();
 
 }
