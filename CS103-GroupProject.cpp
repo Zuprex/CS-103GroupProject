@@ -109,6 +109,14 @@ std::ofstream recFile;
 
 
 void donorMenu() {
+    std::cout << "\n\t Donor Menu\n\n";
+    std::cout << "*******************************************************\n";
+    std::cout << "*                1. Procedure to donate blood         *       \n";
+    std::cout << "*                2. Benefits of blood donation        *\n";
+    std::cout << "*                3. Manage Info                       *\n";
+    std::cout << "*                                                     *\n";
+    std::cout << "*******************************************************\n";
+    
 
     int choice;
 
@@ -130,6 +138,14 @@ void donorMenu() {
         //Benefits of blood donations
 
     case 2:
+        std::cout << "\nGiving blood may lower your risk of sffering a heart attack.\n";
+        std::cout << "Giving blood can help your liver stay healthy.\n";
+        std::cout << "Giving blood can reduce harmful iron stores\n";
+
+
+
+    case 3:
+        //manage info
 
 
 
@@ -140,6 +156,29 @@ void donorMenu() {
 }
 
 void resMenu() {
+    std::cout << "*                         \n\t Recipient Menu                                    *\n\n";
+    std::cout << "**********************************************************************************\n";
+    std::cout << "*                1. access donor information by blood group                      *\n";
+    std::cout << "*                2. Access donors by blood group and location                    *\n";
+    std::cout << "*                3. Potential donors contact details, find by name               *\n";
+    std::cout << "*                                                                                *\n";
+    std::cout << "**********************************************************************************\n";
+    int choice;
+
+    std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
+    std::cin >> choice;
+    switch (choice) {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+
+
+    default:
+        break;
+    }
 
 
 
@@ -565,7 +604,7 @@ void initialMenu() {
 int main() 
 {
 
-    introduction();
+     introduction();
     initialMenu();
 
 }
