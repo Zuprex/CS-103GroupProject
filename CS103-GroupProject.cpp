@@ -93,10 +93,10 @@ struct userRes
 
 // Global/Field Variables *****************************************************************
 
-const int size = 5;
+const int sizes = 5;
 
-userDonor donorList[size];
-userRes resList[size];
+userDonor donorList[sizes];
+userRes resList[sizes];
 
 int registeredDonors = 0;
 int registeredRes = 0;
@@ -140,20 +140,20 @@ void readDonorFiles() {
 
         stringstream seperatedLine(line);
 
-        getline(seperatedLine, firstName);
-        getline(seperatedLine, lastName);
-        getline(seperatedLine, dob);
-        getline(seperatedLine, nationality);
-        getline(seperatedLine, ethnicity);
-        getline(seperatedLine, gender);
-        getline(seperatedLine, healthConditions);
-        getline(seperatedLine, bloodGroup);
-        getline(seperatedLine, contactNum);
-        getline(seperatedLine, email);
-        getline(seperatedLine, physAddress);
-        getline(seperatedLine, prevDonate);
-        getline(seperatedLine, username);
-        getline(seperatedLine, password);
+        getline(seperatedLine, firstName,',');
+        getline(seperatedLine, lastName, ',');
+        getline(seperatedLine, dob, ',');
+        getline(seperatedLine, nationality, ',');
+        getline(seperatedLine, ethnicity, ',');
+        getline(seperatedLine, gender, ',');
+        getline(seperatedLine, healthConditions, ',');
+        getline(seperatedLine, bloodGroup, ',');
+        getline(seperatedLine, contactNum, ',');
+        getline(seperatedLine, email, ',');
+        getline(seperatedLine, physAddress, ',');
+        getline(seperatedLine, prevDonate, ',');
+        getline(seperatedLine, username, ',');
+        getline(seperatedLine, password, ',');
 
         userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
 
@@ -188,13 +188,13 @@ void readRecFiles() {
 
         stringstream seperatedLine(line);
 
-        getline(seperatedLine, recipient);
-        getline(seperatedLine, physAddress);
-        getline(seperatedLine, email);
-        getline(seperatedLine, contactNum);
-        getline(seperatedLine, validationStatus);
-        getline(seperatedLine, username);
-        getline(seperatedLine, password);
+        getline(seperatedLine, recipient, ',');
+        getline(seperatedLine, physAddress, ',');
+        getline(seperatedLine, email, ',');
+        getline(seperatedLine, contactNum, ',');
+        getline(seperatedLine, validationStatus, ',');
+        getline(seperatedLine, username, ',');
+        getline(seperatedLine, password, ',');
 
         userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
 
@@ -231,15 +231,13 @@ void donorMenu() {
         std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
         std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
 
-
         //Benefits of blood donations
 
     case 2:
+
         std::cout << "\nGiving blood may lower your risk of sffering a heart attack.\n";
         std::cout << "Giving blood can help your liver stay healthy.\n";
         std::cout << "Giving blood can reduce harmful iron stores\n";
-
-
 
     case 3:
         //manage info
@@ -321,7 +319,7 @@ bool recipientLogin() {
     std::cout << "\nPlease enter your Password: ";
     std::cin >> password;
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < sizes; i++) {
 
         if (resList[i].username == username) {
 
@@ -367,7 +365,7 @@ bool donorLogin() {
     std::cin >> password;
 
 
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < sizes; i++) {
 
         if (donorList[i].username == username) {
 
@@ -702,7 +700,8 @@ void initialMenu() {
 
 int main() 
 {
-
+    readDonorFiles();
+    readRecFiles();
     introduction();
     initialMenu();
 
