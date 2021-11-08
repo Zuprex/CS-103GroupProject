@@ -4,6 +4,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include<map>
 using namespace std;
 
 // Objects
@@ -94,10 +95,6 @@ struct userRes
 
 // Global/Field Variables *****************************************************************
 
-const int sizes = 5;
-
-//userDonor donorList[sizes];
-//userRes resList[sizes];
 
 vector<userDonor> donorList;
 vector<userRes> resList;
@@ -113,6 +110,8 @@ std::ofstream donorFile;
 std::ofstream recFile;
 
 bool prevMenu = false;
+
+map<int, userDonor> donationTimeTable;
 
 // Global/Field Variables *****************************************************************
 
@@ -140,7 +139,7 @@ void readDonorFiles() {
     std::string username;
     std::string password;
 
-    ifstream inFile("donorFile.csv", ios::in);
+    ifstream inFile("donorList.csv", ios::in);
 
     while (getline(inFile, line)) {
 
@@ -190,7 +189,7 @@ void readRecFiles() {
     std::string username;
     std::string password;
 
-    ifstream inFile("recFile.csv", ios::in);
+    ifstream inFile("recList.csv", ios::in);
 
     while (getline(inFile, line)) {
 
@@ -219,13 +218,14 @@ int donorMenu() {
     std::cout << "*                                                            *\n";
     std::cout << "*                1. Procedure to donate blood                *\n";
     std::cout << "*                2. Benefits of blood donation               *\n";
-    std::cout << "*                3. Manage Info                              *\n";
+    std::cout << "*                3. Change Info                              *\n";
     std::cout << "*                4. Return to Login/Registration             *\n";
     std::cout << "*                                                            *\n";
     std::cout << "**************************************************************\n";
     
 
     int choice;
+    int tracker = 0;
 
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
@@ -257,9 +257,63 @@ int donorMenu() {
 
         //manage info
 
+        tracker = 0;
 
-
+        for (userDonor d : donorList) {
         
+            if (d.username == currentDonor.username) {
+                
+
+                std::cout << "\nWhats is your first name? ";
+                std::cin >> donorList[tracker].firstName;
+
+                std::cout << "\nWhats is your last name? ";
+                std::cin >> donorList[tracker].lastName;
+
+                std::cout << "\nWhats is your Date of birth? (Use '00/00/00' Format ) ";
+                std::cin >> donorList[tracker].dob;
+
+                std::cout << "\nWhats is your Nationality? ";
+                std::cin >> donorList[tracker].nationality;
+
+                std::cout << "\nWhats is your Ethnicity? ";
+                std::cin >> donorList[tracker].ethnicity;
+
+                std::cout << "\nWhats is your Gender? ";
+                std::cin >> donorList[tracker].gender;
+
+                std::cout << "\nDo you have any current health conditions? ";
+                std::cin >> donorList[tracker].healthConditions;
+
+                std::cout << "\nWhats is your Blood Group? ";
+                std::cin >> donorList[tracker].bloodGroup;
+
+                std::cout << "\nWhats is your contact email? ";
+                std::cin >> donorList[tracker].email;
+
+                std::cout << "\nWhats is your Physical Address? ";
+                std::cin >> donorList[tracker].physAddress;
+
+                std::cout << "\nWhats is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you haven't) ";
+                std::cin >> donorList[tracker].prevDonate;
+
+                std::cout << "\nEnter your desired Username ";
+                std::cin >> donorList[tracker].username;
+
+                std::cout << "\nEnter your desired Password ";
+                std::cin >> donorList[tracker].password;
+            
+            }
+            else {
+            
+                tracker++;
+
+            }
+
+        }
+
+        donorMenu();
+
     case 4:
 
         prevMenu = 1;
