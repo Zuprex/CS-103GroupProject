@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 using namespace std;
 
 // Objects
@@ -95,8 +96,11 @@ struct userRes
 
 const int sizes = 5;
 
-userDonor donorList[sizes];
-userRes resList[sizes];
+//userDonor donorList[sizes];
+//userRes resList[sizes];
+
+vector<userDonor> donorList;
+vector<userRes> resList;
 
 int registeredDonors = 0;
 int registeredRes = 0;
@@ -159,7 +163,9 @@ void readDonorFiles() {
 
         userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
 
-        donorList[registeredDonors] = newUser;
+        //donorList.insert(donorList.begin(),newUser);
+
+        donorList.push_back(newUser);
 
         registeredDonors++;
 
@@ -200,7 +206,7 @@ void readRecFiles() {
 
         userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
 
-        resList[registeredRes] = newUser;
+        resList.push_back(newUser);
 
         registeredRes++;
     }
@@ -335,13 +341,13 @@ bool recipientLogin() {
     std::cout << "\nPlease enter your Password: ";
     std::cin >> password;
 
-    for (int i = 0; i < sizes; i++) {
+    for (userRes res : resList) {
 
-        if (resList[i].username == username) {
+        if (res.username == username) {
 
-            if (resList[i].password == password) {
+            if (res.password == password) {
 
-                currentRes = resList[i];
+                currentRes = res;
                 currentDonor = userDonor();
                 return true;
 
@@ -380,23 +386,20 @@ bool donorLogin() {
     std::cout << "\nPlease enter your Password: ";
     std::cin >> password;
 
+    for (userDonor don : donorList) {
+    
+        if (don.username == username) {
 
-    for (int i = 0; i < sizes; i++) {
+            if (don.password == password) {
 
-        if (donorList[i].username == username) {
-
-            if (donorList[i].password == password) {
-
-                currentDonor = donorList[i];
+                currentDonor = don;
                 currentRes = userRes();
                 return true;
 
-
             }
 
-
         }
-
+    
     }
 
     loginAttempts++;
@@ -538,7 +541,7 @@ void donorRegistration() {
 
     userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
 
-    donorList[registeredDonors] = newUser;
+    donorList.push_back(newUser);
 
     registeredDonors++;
 
@@ -587,7 +590,7 @@ void recipientRegistration() {
 
     userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
 
-    resList[registeredRes] = newUser;
+    resList.push_back(newUser);
 
     registeredRes++;
 
