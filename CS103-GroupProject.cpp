@@ -108,6 +108,8 @@ int loginAttempts = 0;
 std::ofstream donorFile;
 std::ofstream recFile;
 
+bool prevMenu = false;
+
 // Global/Field Variables *****************************************************************
 
 
@@ -205,14 +207,16 @@ void readRecFiles() {
 
 }
 
-void donorMenu() {
+int donorMenu() {
     std::cout << "\n\t Donor Menu\n\n";
-    std::cout << "*******************************************************\n";
-    std::cout << "*                1. Procedure to donate blood         *       \n";
-    std::cout << "*                2. Benefits of blood donation        *\n";
-    std::cout << "*                3. Manage Info                       *\n";
-    std::cout << "*                                                     *\n";
-    std::cout << "*******************************************************\n";
+    std::cout << "**************************************************************\n";
+    std::cout << "*                                                            *\n";
+    std::cout << "*                1. Procedure to donate blood                *\n";
+    std::cout << "*                2. Benefits of blood donation               *\n";
+    std::cout << "*                3. Manage Info                              *\n";
+    std::cout << "*                4. Return to Login/Registration             *\n";
+    std::cout << "*                                                            *\n";
+    std::cout << "**************************************************************\n";
     
 
     int choice;
@@ -231,6 +235,8 @@ void donorMenu() {
         std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
         std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
 
+        donorMenu();
+
         //Benefits of blood donations
 
     case 2:
@@ -239,9 +245,19 @@ void donorMenu() {
         std::cout << "Giving blood can help your liver stay healthy.\n";
         std::cout << "Giving blood can reduce harmful iron stores\n";
 
+        donorMenu();
+
     case 3:
+
         //manage info
 
+
+
+        
+    case 4:
+
+        prevMenu = 1;
+        return false;
 
 
     default:
@@ -374,6 +390,7 @@ bool donorLogin() {
                 currentDonor = donorList[i];
                 currentRes = userRes();
                 return true;
+
 
             }
 
@@ -617,39 +634,42 @@ void initialMenu() {
 
         case 1:
 
-            if (recipientLogin() == true) {
+            if (prevMenu != 1 && recipientLogin() == true ) {
 
                 resMenu();
 
             }
             else {
 
+                prevMenu = 0;
                 initialMenu();
 
             }
 
         case 2:
 
-            if (donorLogin() == true) {
+            if (prevMenu != 1 && donorLogin() == true) {
 
                 donorMenu();
 
             }
             else {
 
+                prevMenu = 0;
                 initialMenu();
 
             }
 
         case 3:
 
-            if (adminLogin() == true) {
+            if (prevMenu != 1 && adminLogin() == true) {
 
                 adminMenu();
 
             }
             else {
 
+                prevMenu = 0;
                 initialMenu();
 
             }
