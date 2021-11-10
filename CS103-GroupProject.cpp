@@ -220,6 +220,24 @@ void readRecFiles() {
 
 }
 
+// Check Booking availability
+
+bool checkDate(std::string date) {
+
+    for (userDonor ds : donorList) {
+
+        if (ds.date == date) {
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+
+}
+
 int donorMenu() {
     std::cout << "\n\t Donor Menu\n\n";
     std::cout << "**************************************************************\n";
@@ -346,16 +364,15 @@ int donorMenu() {
 
                 if (donorList[tracker].date.empty() && donorList[tracker].time.empty()) {
 
+                    std::string date;
+
                     std::cout << "Enter a date for when you'll donate your Blood (00/00/00 Format)";
 
-                    //std::cin >> donorList[tracker].date;
-
-                    for (userDonor ds : donorList) {
+                    std::cin >> date;
                     
-                    
-                        //ds.
+                    //donorList[tracker].date;
 
-                    }
+                    
 
 
                 }
@@ -381,6 +398,8 @@ int donorMenu() {
     }
 
 }
+
+
 
 void resMenu() {
     std::cout << "*                         \n\t Recipient Menu                                    *\n\n";
