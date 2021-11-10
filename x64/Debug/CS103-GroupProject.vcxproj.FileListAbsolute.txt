@@ -1,1 +1,3 @@
 C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\x64\Debug\CS103-GroupProject.exe
+C:\Users\270058186\OneDrive - UP Education\Desktop\CS103\bloodBank\CS-103GroupProject\x64\Debug\CS103-GroupProject.exe
+C:\Users\270058186\OneDrive - UP Education\Desktop\CS103\bloodBank\CS-103GroupProject\x64\Debug\CS103-GroupProject.pdb

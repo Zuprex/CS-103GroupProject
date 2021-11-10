@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 // The Group Project will be based on the NZ Blood Bank System.
 #include <iostream>
 #include <fstream>
@@ -150,21 +146,14 @@ void readDonorFiles() {
     std::string username;
     std::string password;
 
-<<<<<<< HEAD
     ifstream inFile("donorFile.csv", ios::in);
-=======
-    ifstream inFile("donorList.csv", ios::in);
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
+
 
     while (getline(inFile, line)) {
 
         stringstream seperatedLine(line);
 
-<<<<<<< HEAD
         getline(seperatedLine, firstName, ',');
-=======
-        getline(seperatedLine, firstName,',');
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
         getline(seperatedLine, lastName, ',');
         getline(seperatedLine, dob, ',');
         getline(seperatedLine, nationality, ',');
@@ -238,18 +227,11 @@ int donorMenu() {
     std::cout << "*                1. Procedure to donate blood                *\n";
     std::cout << "*                2. Benefits of blood donation               *\n";
     std::cout << "*                3. Change Info                              *\n";
-<<<<<<< HEAD
     std::cout << "*                4. Book for donation                        *\n";
     std::cout << "*                5. Return to Login/Registration             *\n";
     std::cout << "*                                                            *\n";
     std::cout << "**************************************************************\n";
 
-=======
-    std::cout << "*                4. Return to Login/Registration             *\n";
-    std::cout << "*                                                            *\n";
-    std::cout << "**************************************************************\n";
-    
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
     int choice;
     int tracker = 0;
@@ -271,13 +253,6 @@ int donorMenu() {
         std::cout << "*                                                                                                                                          *\n";
         std::cout << "********************************************************************************************************************************************\n";
 
-<<<<<<< HEAD
-        std::cout << "\nA blood donation can take up to 60 minutes (includes registration, donation and recovery).\n";
-        std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
-        std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
-
-=======
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
         donorMenu();
 
         //Benefits of blood donations
@@ -310,17 +285,6 @@ int donorMenu() {
                 std::cout << "*                                        Whats is your last name?                                                      *\n";
                 std::cin >> donorList[tracker].lastName;
 
-<<<<<<< HEAD
-        std::cout << "\nGiving blood may lower your risk of sffering a heart attack.\n";
-        std::cout << "Giving blood can help your liver stay healthy.\n";
-        std::cout << "Giving blood can reduce harmful iron stores\n";
-
-        donorMenu();
-
-    case 3:
-
-        //manage info
-=======
                 std::cout << "                  Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
                 std::cin >> donorList[tracker].dob;
 
@@ -367,68 +331,6 @@ int donorMenu() {
 
         donorMenu();
 
-    case 4:
-
-        prevMenu = 1;
-        return false;
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
-
-        tracker = 0;
-
-        for (userDonor d : donorList) {
-
-            if (d.username == currentDonor.username) {
-
-
-                std::cout << "\nWhats is your first name? ";
-                std::cin >> donorList[tracker].firstName;
-
-                std::cout << "\nWhats is your last name? ";
-                std::cin >> donorList[tracker].lastName;
-
-                std::cout << "\nWhats is your Date of birth? (Use '00/00/00' Format ) ";
-                std::cin >> donorList[tracker].dob;
-
-                std::cout << "\nWhats is your Nationality? ";
-                std::cin >> donorList[tracker].nationality;
-
-                std::cout << "\nWhats is your Ethnicity? ";
-                std::cin >> donorList[tracker].ethnicity;
-
-                std::cout << "\nWhats is your Gender? ";
-                std::cin >> donorList[tracker].gender;
-
-                std::cout << "\nDo you have any current health conditions? ";
-                std::cin >> donorList[tracker].healthConditions;
-
-                std::cout << "\nWhats is your Blood Group? ";
-                std::cin >> donorList[tracker].bloodGroup;
-
-                std::cout << "\nWhats is your contact email? ";
-                std::cin >> donorList[tracker].email;
-
-                std::cout << "\nWhats is your Physical Address? ";
-                std::cin >> donorList[tracker].physAddress;
-
-                std::cout << "\nWhats is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you haven't) ";
-                std::cin >> donorList[tracker].prevDonate;
-
-                std::cout << "\nEnter your desired Username ";
-                std::cin >> donorList[tracker].username;
-
-                std::cout << "\nEnter your desired Password ";
-                std::cin >> donorList[tracker].password;
-
-            }
-            else {
-
-                tracker++;
-
-            }
-
-        }
-
-        donorMenu();
 
     case 4:
 
@@ -451,7 +353,7 @@ int donorMenu() {
                     for (userDonor ds : donorList) {
                     
                     
-                        ds.
+                        //ds.
 
                     }
 
@@ -595,15 +497,10 @@ bool donorLogin() {
     std::cin >> password;
 
     for (userDonor don : donorList) {
-<<<<<<< HEAD
 
-        if (don.username == username) {
-
-=======
     
         if (don.username == username) {
 
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
             if (don.password == password) {
 
                 currentDonor = don;
@@ -646,11 +543,6 @@ bool adminLogin() {
     std::cout << "\nPlease enter your Password: ";
     std::cin >> password;
 
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
     if ("admin" == username) {
 
@@ -701,67 +593,71 @@ void donorRegistration() {
     std::string username;
     std::string password;
 
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    donorFile.open("DonorList.csv", std::ios::app);
+    donorFile.open("donorFile.csv", std::ios::app);
     donorFile << "\n";
 
-    std::cout << "\nWhats is your first name? ";
-    std::cin >> firstName;
+    std::cout << "\nWhats is your first name?: ";
+    getline(std::cin, firstName);
     donorFile << firstName << ",";
 
-    std::cout << "\nWhats is your last name? ";
-    std::cin >> lastName;
+    std::cout << "\nWhats is your last name?: ";
+    getline(std::cin, lastName);
     donorFile << lastName << ",";
 
-    std::cout << "\nWhats is your Date of birth? (Use '00/00/00' Format ) ";
-    std::cin >> dob;
+    std::cout << "\nWhats is your Date of birth? (Use '00/00/00' Format ): ";
+    getline(std::cin, dob);
     donorFile << dob << ",";
 
-    std::cout << "\nWhats is your Nationality? ";
-    std::cin >> nationality;
+    std::cout << "\nWhats is your Nationality?: ";
+    getline(std::cin, nationality);
     donorFile << nationality << ",";
 
-    std::cout << "\nWhats is your Ethnicity? ";
-    std::cin >> ethnicity;
+    std::cout << "\nWhats is your Ethnicity?: ";
+    getline(std::cin, ethnicity);
     donorFile << ethnicity << ",";
 
-    std::cout << "\nWhats is your Gender? ";
-    std::cin >> gender;
+    std::cout << "\nWhats is your Gender?: ";
+    getline(std::cin, gender);
     donorFile << gender << ",";
 
-    std::cout << "\nDo you have any current health conditions? ";
-    std::cin >> healthConditions;
+    std::cout << "\nDo you have any current health conditions?: ";
+    getline(std::cin, healthConditions);
     donorFile << healthConditions << ",";
 
-    std::cout << "\nWhats is your Blood Group? ";
-    std::cin >> bloodGroup;
+    std::cout << "\nWhats is your Blood Group?: ";
+    getline(std::cin, bloodGroup);
     donorFile << bloodGroup << ",";
 
-    std::cout << "\nWhats is your contact email? ";
-    std::cin >> email;
-    donorFile << firstName << ",";
+    std::cout << "\nWhats is your contact email?: ";
+    getline(std::cin, email);
+    donorFile << email << ",";
 
-    std::cout << "\nWhats is your Physical Address? ";
-    std::cin >> physAddress;
+    std::cout << "\nWhats is your Physical Address?: ";
+    getline(std::cin, physAddress);
     donorFile << physAddress << ",";
 
-    std::cout << "\nWhats is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you haven't) ";
-    std::cin >> prevDonate;
+    std::cout << "\nWhats is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you haven't): ";
+    getline(std::cin, prevDonate);
     donorFile << prevDonate << ",";
 
-    std::cout << "\nEnter your desired Username ";
-    std::cin >> username;
+    std::cout << "\nEnter your desired Username: ";
+    getline(std::cin, username);
     donorFile << username << ",";
 
-    std::cout << "\nEnter your desired Password ";
-    std::cin >> password;
+    std::cout << "\nEnter your desired Password: ";
+    getline(std::cin, password);
     donorFile << password << ",";
 
     userDonor newUser = userDonor(firstName, lastName, dob, nationality, ethnicity, gender, healthConditions, bloodGroup, contactNum, email, physAddress, prevDonate, username, password);
 
     donorList.push_back(newUser);
 
+    donorFile.close();
+
     registeredDonors++;
+
 
 
 }
@@ -855,11 +751,9 @@ void initialMenu() {
 
         case 1:
 
-<<<<<<< HEAD
+
             if (prevMenu != 1 && recipientLogin() == true) {
-=======
-            if (prevMenu != 1 && recipientLogin() == true ) {
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
+
 
                 resMenu();
 
@@ -951,7 +845,3 @@ int main()
     initialMenu();
 
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
