@@ -1,2 +1,4 @@
 ﻿  CS103-GroupProject.cpp
+C:\Users\270103895\OneDrive - UP Education\cs 103\3\CS103-GroupProject.cpp(335): warning C4715: 'donorMenu': not all control paths return a value
+  LINK : C:\Users\270103895\OneDrive - UP Education\cs 103\3\Debug\CS103-GroupProject.exe not found or not built by the last incremental link; performing full link
   CS103-GroupProject.vcxproj -> C:\Users\270103895\OneDrive - UP Education\cs 103\3\Debug\CS103-GroupProject.exe
