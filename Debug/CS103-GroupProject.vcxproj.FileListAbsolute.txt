@@ -1,1 +1,3 @@
 C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject\Debug\CS103-GroupProject.exe
+C:\Users\270103895\OneDrive - UP Education\cs 103\3\Debug\CS103-GroupProject.exe
+C:\Users\270103895\OneDrive - UP Education\cs 103\3\Debug\CS103-GroupProject.pdb

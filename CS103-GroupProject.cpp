@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 // The Group Project will be based on the NZ Blood Bank System.
 #include <iostream>
 #include <fstream>
@@ -147,13 +150,21 @@ void readDonorFiles() {
     std::string username;
     std::string password;
 
+<<<<<<< HEAD
     ifstream inFile("donorFile.csv", ios::in);
+=======
+    ifstream inFile("donorList.csv", ios::in);
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
     while (getline(inFile, line)) {
 
         stringstream seperatedLine(line);
 
+<<<<<<< HEAD
         getline(seperatedLine, firstName, ',');
+=======
+        getline(seperatedLine, firstName,',');
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
         getline(seperatedLine, lastName, ',');
         getline(seperatedLine, dob, ',');
         getline(seperatedLine, nationality, ',');
@@ -227,11 +238,18 @@ int donorMenu() {
     std::cout << "*                1. Procedure to donate blood                *\n";
     std::cout << "*                2. Benefits of blood donation               *\n";
     std::cout << "*                3. Change Info                              *\n";
+<<<<<<< HEAD
     std::cout << "*                4. Book for donation                        *\n";
     std::cout << "*                5. Return to Login/Registration             *\n";
     std::cout << "*                                                            *\n";
     std::cout << "**************************************************************\n";
 
+=======
+    std::cout << "*                4. Return to Login/Registration             *\n";
+    std::cout << "*                                                            *\n";
+    std::cout << "**************************************************************\n";
+    
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
     int choice;
     int tracker = 0;
@@ -245,17 +263,54 @@ int donorMenu() {
         // Procedure to donate blood:
 
     case 1:
+        std::cout << "********************************************************************************************************************************************\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "*             A blood donation can take up to 60 minutes (includes registration, donation and recovery).                                   *\n";
+        std::cout << "*               The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.                               *\n";
+        std::cout << "*              A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.                       *\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "********************************************************************************************************************************************\n";
 
+<<<<<<< HEAD
         std::cout << "\nA blood donation can take up to 60 minutes (includes registration, donation and recovery).\n";
         std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
         std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
 
+=======
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
         donorMenu();
 
         //Benefits of blood donations
 
     case 2:
+        std::cout << "********************************************************************************************************************************************\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "*                                Giving blood may lower your risk of sffering a heart attack.                                              *\n";
+        std::cout << "*                                Giving blood can help your liver stay healthy.                                                            *\n";
+        std::cout << "*                                Giving blood can reduce harmful iron stores                                                               *\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "********************************************************************************************************************************************\n";
+        donorMenu();
 
+    case 3:
+
+        //manage info
+
+        tracker = 0;
+
+        for (userDonor d : donorList) {
+        
+            if (d.username == currentDonor.username) {
+                
+                std::cout << "************************************************************************************************************************\n";
+                std::cout << "*                                                                                                                      *\n";
+                std::cout << "*                                        Whats is your first name?                                                     *\n";
+                std::cin >> donorList[tracker].firstName;
+
+                std::cout << "*                                        Whats is your last name?                                                      *\n";
+                std::cin >> donorList[tracker].lastName;
+
+<<<<<<< HEAD
         std::cout << "\nGiving blood may lower your risk of sffering a heart attack.\n";
         std::cout << "Giving blood can help your liver stay healthy.\n";
         std::cout << "Giving blood can reduce harmful iron stores\n";
@@ -265,6 +320,58 @@ int donorMenu() {
     case 3:
 
         //manage info
+=======
+                std::cout << "                  Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
+                std::cin >> donorList[tracker].dob;
+
+                std::cout << "*                                        Whats is your Nationality?                                                    *\n";
+                std::cin >> donorList[tracker].nationality;
+
+                std::cout << "*                                        Whats is your Ethnicity?                                                      *\n";
+                std::cin >> donorList[tracker].ethnicity;
+
+                std::cout << "*                                        Whats is your Gender?                                                         *\n";
+                std::cin >> donorList[tracker].gender;
+
+                std::cout << "*                                        Do you have any current health conditions?                                    *\n";
+                std::cin >> donorList[tracker].healthConditions;
+
+                std::cout << "*                                        Whats is your Blood Group?                                                    *\n";
+                std::cin >> donorList[tracker].bloodGroup;
+
+                std::cout << "*                                        Whats is your contact email?                                                  *\n";
+                std::cin >> donorList[tracker].email;
+
+                std::cout << "*                                        Whats is your Physical Address?                                               *\n";
+                std::cin >> donorList[tracker].physAddress;
+
+                std::cout << "*                What is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you have'nt   *\n";
+                std::cin >> donorList[tracker].prevDonate;
+
+                std::cout << "*                                        Enter your desired Username                                                   *\n";
+                std::cin >> donorList[tracker].username;
+
+                std::cout << "*                                        Enter your desired Password                                                   *\n";
+                std::cin >> donorList[tracker].password;
+                std::cout << "*                                                                                                                      *\n";
+                std::cout << "************************************************************************************************************************\n";
+            
+            }
+            else {
+            
+                tracker++;
+
+            }
+
+        }
+
+        donorMenu();
+
+    case 4:
+
+        prevMenu = 1;
+        return false;
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
         tracker = 0;
 
@@ -488,9 +595,15 @@ bool donorLogin() {
     std::cin >> password;
 
     for (userDonor don : donorList) {
+<<<<<<< HEAD
 
         if (don.username == username) {
 
+=======
+    
+        if (don.username == username) {
+
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
             if (don.password == password) {
 
                 currentDonor = don;
@@ -500,7 +613,7 @@ bool donorLogin() {
             }
 
         }
-
+    
     }
 
     loginAttempts++;
@@ -533,7 +646,11 @@ bool adminLogin() {
     std::cout << "\nPlease enter your Password: ";
     std::cin >> password;
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
     if ("admin" == username) {
 
@@ -738,7 +855,11 @@ void initialMenu() {
 
         case 1:
 
+<<<<<<< HEAD
             if (prevMenu != 1 && recipientLogin() == true) {
+=======
+            if (prevMenu != 1 && recipientLogin() == true ) {
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
 
                 resMenu();
 
@@ -822,7 +943,7 @@ void initialMenu() {
     }
 }
 
-int main()
+int main() 
 {
     readDonorFiles();
     readRecFiles();
@@ -830,4 +951,7 @@ int main()
     initialMenu();
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9607785d0110cc9626844fa73721e21b4a6f1281
