@@ -338,6 +338,7 @@ int donorMenu() {
                 if (donorList[tracker].date.empty() && donorList[tracker].time.empty()) {
 
                     std::cout << "Enter a date for when you'll donate your Blood (00/00/00 Format)";
+
                     //std::cin >> donorList[tracker].date;
 
                     for (userDonor ds : donorList) {
