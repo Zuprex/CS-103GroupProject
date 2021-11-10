@@ -197,7 +197,7 @@ void readRecFiles() {
     std::string username;
     std::string password;
 
-    ifstream inFile("recList.csv", ios::in);
+    ifstream inFile("recFile.csv", ios::in);
 
     while (getline(inFile, line)) {
 
@@ -672,39 +672,43 @@ void recipientRegistration() {
     std::string username;
     std::string password;
 
-    recFile.open("recList.csv", std::ios::app);
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    recFile.open("recFile.csv", std::ios::app);
 
     std::cout << "\nEnter the Name of the Hostpital OR Name of the Blood Bank OR Patient Name ";
-    std::cin >> recipient;
+    getline(std::cin, recipient);
     recFile << recipient << ",";
 
     std::cout << "\nEnter your physical address ";
-    std::cin >> physAddress;
+    getline(std::cin, physAddress);
     recFile << physAddress << ",";
 
     std::cout << "\nEnter your email ";
-    std::cin >> email;
+    getline(std::cin, email);
     recFile << email << ",";
 
     std::cout << "\nEnter your Contact Number ";
-    std::cin >> contactNum;
+    getline(std::cin, contactNum);
     recFile << contactNum << ",";
 
     std::cout << "\nEnter your Validation Status ";
-    std::cin >> validationStatus;
+    getline(std::cin, validationStatus);
     recFile << validationStatus << ",";
 
     std::cout << "\nEnter your desired Username ";
-    std::cin >> username;
+    getline(std::cin, username);
     recFile << username << ",";
 
     std::cout << "\nEnter your desired Password ";
-    std::cin >> password;
+    getline(std::cin, password);
     recFile << password << ",";
 
     userRes newUser = userRes(recipient, physAddress, email, contactNum, validationStatus, username, password);
 
     resList.push_back(newUser);
+
+    recFile.close();
 
     registeredRes++;
 
@@ -805,7 +809,7 @@ void initialMenu() {
         std::cout << "           Are you a Donor or Recipient?\n";
         std::cout << "*****************************************************\n\n";
         std::cout << "*                Enter 1 for Recipient              *\n\n";
-        std::cout << "*               Enter 2 for Donor                   *\n\n";
+        std::cout << "*                  Enter 2 for Donor                *\n\n";
         std::cout << "*****************************************************\n\n";
 
         int registrationTypeChoice;
