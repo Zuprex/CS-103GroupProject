@@ -236,21 +236,26 @@ int donorMenu() {
         // Procedure to donate blood:
 
     case 1:
-
-        std::cout << "\nA blood donation can take up to 60 minutes (includes registration, donation and recovery).\n";
-        std::cout << "The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.\n";
-        std::cout << "A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.\n";
+        std::cout << "********************************************************************************************************************************************\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "*             A blood donation can take up to 60 minutes (includes registration, donation and recovery).                                   *\n";
+        std::cout << "*               The blood is collected in a sterile bag, and time on the bed can take about 5 to 10 minutes.                               *\n";
+        std::cout << "*              A unit of blood(around 470 ml) will be collected.The needle is then removed and a bandage is applied.                       *\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "********************************************************************************************************************************************\n";
 
         donorMenu();
 
         //Benefits of blood donations
 
     case 2:
-
-        std::cout << "\nGiving blood may lower your risk of sffering a heart attack.\n";
-        std::cout << "Giving blood can help your liver stay healthy.\n";
-        std::cout << "Giving blood can reduce harmful iron stores\n";
-
+        std::cout << "********************************************************************************************************************************************\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "*                                Giving blood may lower your risk of sffering a heart attack.                                              *\n";
+        std::cout << "*                                Giving blood can help your liver stay healthy.                                                            *\n";
+        std::cout << "*                                Giving blood can reduce harmful iron stores                                                               *\n";
+        std::cout << "*                                                                                                                                          *\n";
+        std::cout << "********************************************************************************************************************************************\n";
         donorMenu();
 
     case 3:
@@ -263,45 +268,48 @@ int donorMenu() {
         
             if (d.username == currentDonor.username) {
                 
-
-                std::cout << "\nWhats is your first name? ";
+                std::cout << "************************************************************************************************************************\n";
+                std::cout << "*                                                                                                                      *\n";
+                std::cout << "*                                        Whats is your first name?                                                     *\n";
                 std::cin >> donorList[tracker].firstName;
 
-                std::cout << "\nWhats is your last name? ";
+                std::cout << "*                                        Whats is your last name?                                                      *\n";
                 std::cin >> donorList[tracker].lastName;
 
-                std::cout << "\nWhats is your Date of birth? (Use '00/00/00' Format ) ";
+                std::cout << "                  Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
                 std::cin >> donorList[tracker].dob;
 
-                std::cout << "\nWhats is your Nationality? ";
+                std::cout << "*                                        Whats is your Nationality?                                                    *\n";
                 std::cin >> donorList[tracker].nationality;
 
-                std::cout << "\nWhats is your Ethnicity? ";
+                std::cout << "*                                        Whats is your Ethnicity?                                                      *\n";
                 std::cin >> donorList[tracker].ethnicity;
 
-                std::cout << "\nWhats is your Gender? ";
+                std::cout << "*                                        Whats is your Gender?                                                         *\n";
                 std::cin >> donorList[tracker].gender;
 
-                std::cout << "\nDo you have any current health conditions? ";
+                std::cout << "*                                        Do you have any current health conditions?                                    *\n";
                 std::cin >> donorList[tracker].healthConditions;
 
-                std::cout << "\nWhats is your Blood Group? ";
+                std::cout << "*                                        Whats is your Blood Group?                                                    *\n";
                 std::cin >> donorList[tracker].bloodGroup;
 
-                std::cout << "\nWhats is your contact email? ";
+                std::cout << "*                                        Whats is your contact email?                                                  *\n";
                 std::cin >> donorList[tracker].email;
 
-                std::cout << "\nWhats is your Physical Address? ";
+                std::cout << "*                                        Whats is your Physical Address?                                               *\n";
                 std::cin >> donorList[tracker].physAddress;
 
-                std::cout << "\nWhats is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you haven't) ";
+                std::cout << "*                What is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you have'nt   *\n";
                 std::cin >> donorList[tracker].prevDonate;
 
-                std::cout << "\nEnter your desired Username ";
+                std::cout << "*                                        Enter your desired Username                                                   *\n";
                 std::cin >> donorList[tracker].username;
 
-                std::cout << "\nEnter your desired Password ";
+                std::cout << "*                                        Enter your desired Password                                                   *\n";
                 std::cin >> donorList[tracker].password;
+                std::cout << "*                                                                                                                      *\n";
+                std::cout << "************************************************************************************************************************\n";
             
             }
             else {
