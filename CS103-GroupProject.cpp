@@ -64,20 +64,22 @@ struct userDonor
     }
 
     void printInfo() {
-    
-        std::cout << "\nFirst Name:\t" << firstName;
-        std::cout << "\nLast Name:\t" << lastName;
-        std::cout << "\nDate of birth:\t" << dob;
-        std::cout << "\nNationality:\t" << nationality;
-        std::cout << "\nEthnicity:\t" << ethnicity;
-        std::cout << "\nGender:\t" << gender;
+
+        std::cout << "\n*********************************************\n";
+
+        std::cout << "\nFirst Name:\t\t" << firstName;
+        std::cout << "\nLast Name:\t\t" << lastName;
+        std::cout << "\nDate of birth:\t\t" << dob;
+        std::cout << "\nNationality:\t\t" << nationality;
+        std::cout << "\nEthnicity:\t\t" << ethnicity;
+        std::cout << "\nGender:\t\t\t" << gender;
         std::cout << "\nHealth Conditions:\t" << healthConditions;
-        std::cout << "\nBlood Group:\t" << bloodGroup;
-        std::cout << "\nContact Number:\t" << contactNum;
-        std::cout << "\nEmail:\t" << email;
+        std::cout << "\nBlood Group:\t\t" << bloodGroup;
+        std::cout << "\nContact Number:\t\t" << contactNum;
+        std::cout << "\nEmail:\t\t\t" << email;
         std::cout << "\nPhysical Address:\t" << physAddress;
-        std::cout << "\nPreviously Donated?:\t" << prevDonate; 
-    
+        std::cout << "\nPreviously Donated?:\t" << prevDonate << "\n";
+
     }
 
 };
@@ -400,11 +402,11 @@ int donorMenu() {
                 std::cout << "Any recent health condition(s):\t" << donorList[tracker].healthConditions << std::endl;
 
                 if (!d.time.empty() && !d.date.empty()) {
-                
+
                     std::cout << "Current Booking:\t\t\t" << donorList[tracker].date << " " << donorList[tracker].time << std::endl;
-                
+
                 }
-                
+
 
                 checkDate(&donorList[tracker]);
                 donorMenu();
@@ -434,17 +436,25 @@ int donorMenu() {
 
 
 
-void resMenu() {
+int resMenu() {
+
+    // Recipient Menu Function.
+
     std::cout << "\n                               Recipient Menu\n\n";
     std::cout << "**********************************************************************************\n";
+    std::cout << "*                                                                                *\n";
     std::cout << "*                1. Access donor information by blood group                      *\n";
     std::cout << "*                2. Access donors by blood group and location                    *\n";
     std::cout << "*                3. Potential donors contact details, find by name               *\n";
+    std::cout << "*                4. Return to Login/Registration                                 *\n";
     std::cout << "*                                                                                *\n";
     std::cout << "**********************************************************************************\n";
 
     int choice;
     std::string keyBlood;
+    std::string location;
+    std::string firstName;
+    std::string lastName;
 
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
@@ -453,28 +463,80 @@ void resMenu() {
 
     case 1:
 
+        // Access Donor's info by blood Group
+
         std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
         std::cin >> keyBlood;
 
         for (userDonor i : donorList) {
-        
+
             if (i.bloodGroup == keyBlood) {
-            
+
                 i.printInfo();
-            
+
             }
-        
+
         }
 
+        resMenu();
+
     case 2:
+
+        // Access Donor's info by  blood Group AND location.
+
+        std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
+        std::cin >> keyBlood;
+
+        std::cout << "\nEnter which donor location you like to view (Capitalize the first letter):";
+        std::cin >> location;
+
+        for (userDonor i : donorList) {
+
+            if (i.bloodGroup == keyBlood && i.physAddress == location) {
+
+                i.printInfo();
+
+            }
+
+        }
+
+        resMenu();
 
 
     case 3:
 
+        // Access donor's info by giving full name.
+
+        std::cout << "\nEnter which donor's First Name you like to view (Capitalize the letter):";
+        std::cin >> firstName;
+
+        std::cout << "\nEnter which donor's Last Name you like to view (Capitalize the first letter):";
+        std::cin >> lastName;
+
+        for (userDonor i : donorList) {
+
+            if (i.firstName == firstName && i.lastName == lastName) {
+
+                i.printInfo();
+
+            }
+
+        }
+
+        resMenu();
+
+    case 4:
+
+        // Return to login screen.
+
+        prevMenu = 1;
+        return false;
 
 
     default:
+
         break;
+
     }
 
 
@@ -486,23 +548,33 @@ void resMenu() {
 void adminMenu() {
     std::cout << "\n                                  Admin Menu\n\n";
     std::cout << "**********************************************************************************\n";
-    std::cout << "*                1.                                                              *\n";
-    std::cout << "*                2.                                                              *\n";
-    std::cout << "*                3.                                                              *\n";
-    std::cout << "*                                                                                *\n";
+    std::cout << "*                1. View the recipient information and donors’ information       *\n";
+    std::cout << "*                2. Update the donor’s blood testing reports                     *\n";
+    std::cout << "*                3. Donors report                                                *\n";
+    std::cout << "*                4. Report based on blood group                                  *\n";
+    std::cout << "*                5. Report based on location                                     *\n";
+    std::cout << "*                6. Recipient report                                             *\n";
     std::cout << "**********************************************************************************\n";
 
     int choice;
 
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
+
     switch (choice) {
+
     case 1:
-        break;
+
+
+
     case 2:
+
         break;
+
     case 3:
+
         break;
+
     default:
         break;
     }
