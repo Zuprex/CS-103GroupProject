@@ -4,7 +4,6 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include <map>
 using namespace std;
 
 // Objects
@@ -40,6 +39,15 @@ struct userDonor
     std::string time;
     std::string venue = "Blood Bank of New Zealand";
 
+    // Blood Test
+
+    std::string malaria = "Untested";
+    std::string syphilis = "Untested";
+    std::string brucellosis = "Untested";
+    std::string hepatitisB= "Untested";
+    std::string hepatitisC= "Untested";
+    std::string HIV = "Untested";
+
     //Constructor
 
     userDonor() {};
@@ -67,6 +75,8 @@ struct userDonor
 
         std::cout << "\n*********************************************\n";
 
+        std::cout << "\nDonor: \n\n";
+
         std::cout << "\nFirst Name:\t\t" << firstName;
         std::cout << "\nLast Name:\t\t" << lastName;
         std::cout << "\nDate of birth:\t\t" << dob;
@@ -79,6 +89,36 @@ struct userDonor
         std::cout << "\nEmail:\t\t\t" << email;
         std::cout << "\nPhysical Address:\t" << physAddress;
         std::cout << "\nPreviously Donated?:\t" << prevDonate << "\n";
+
+    }
+
+    void printReportInfoBlood() {
+    
+        std::cout << "\n*********************************************\n";
+
+        std::cout << "\nDonor: \t\t\t" << firstName << " " << lastName;
+        std::cout << "\nBlood Group: \t\t" << bloodGroup;
+        std::cout << "\nMalaria: \t\t" << malaria;
+        std::cout << "\nSyphilis: \t\t" << syphilis;
+        std::cout << "\nBrucellosis: \t\t" << brucellosis;
+        std::cout << "\nHepatitis B: \t\t" << hepatitisB;
+        std::cout << "\nHepatitis C: \t\t" << hepatitisC;
+        std::cout << "\nHIV: \t\t\t" << HIV << "\n";
+    
+    }
+
+    void printReportInfoLocation() {
+
+        std::cout << "\n*********************************************\n";
+
+        std::cout << "\nDonor: \t\t\t" << firstName << " " << lastName;
+        std::cout << "\nLocation: \t\t" << physAddress;
+        std::cout << "\nMalaria: \t\t" << malaria;
+        std::cout << "\nSyphilis: \t\t" << syphilis;
+        std::cout << "\nBrucellosis: \t\t" << brucellosis;
+        std::cout << "\nHepatitis B: \t\t" << hepatitisB;
+        std::cout << "\nHepatitis C: \t\t" << hepatitisC;
+        std::cout << "\nHIV: \t\t\t" << HIV << "\n";
 
     }
 
@@ -116,6 +156,20 @@ struct userRes
 
     }
 
+    void printInfo() {
+
+        std::cout << "\n*********************************************\n";
+
+        std::cout << "\nRecipient: \n\n";
+
+        std::cout << "\nRecipient:\t\t" << recipient;
+        std::cout << "\nPhysiccal Address:\t\t" << physAddress;
+        std::cout << "\nEmail:\t\t" << email;
+        std::cout << "\nContact Number:\t\t" << contactNum;
+        std::cout << "\nValidation Status:\t\t" << validationStatus << "\n";
+
+    }
+
 };
 
 // Global/Field Variables *****************************************************************
@@ -136,7 +190,7 @@ std::ofstream recFile;
 
 bool prevMenu = false;
 
-map<int, userDonor> donationTimeTable;
+bool menuBool;
 
 // Global/Field Variables *****************************************************************
 
@@ -334,15 +388,13 @@ int donorMenu() {
 
             if (d.username == currentDonor.username) {
 
-                std::cout << "************************************************************************************************************************\n";
-                std::cout << "*                                                                                                                      *\n";
-                std::cout << "*                                        Whats is your first name?                                                     *\n";
+                std::cout << "Whats is your first name?\n";
                 std::cin >> donorList[tracker].firstName;
 
-                std::cout << "*                                        Whats is your last name?                                                      *\n";
+                std::cout << "Whats is your last name?\n";
                 std::cin >> donorList[tracker].lastName;
 
-                std::cout << "                  Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
+                std::cout << " Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
                 std::cin >> donorList[tracker].dob;
 
                 std::cout << "*                                        Whats is your Nationality?                                                    *\n";
@@ -545,18 +597,21 @@ int resMenu() {
 
 
 //EST
-void adminMenu() {
+int adminMenu() {
     std::cout << "\n                                  Admin Menu\n\n";
     std::cout << "**********************************************************************************\n";
     std::cout << "*                1. View the recipient information and donors’ information       *\n";
-    std::cout << "*                2. Update the donor’s blood testing reports                     *\n";
-    std::cout << "*                3. Donors report                                                *\n";
-    std::cout << "*                4. Report based on blood group                                  *\n";
-    std::cout << "*                5. Report based on location                                     *\n";
-    std::cout << "*                6. Recipient report                                             *\n";
+    std::cout << "*                2. Report based on blood group                                  *\n";
+    std::cout << "*                3. Report based on location                                     *\n";
+    std::cout << "*                4. Donors report                                                *\n";
+    std::cout << "*                5. Recipient report                                             *\n";
+    std::cout << "*                6. Update the donor’s blood testing reports                     *\n";
+    std::cout << "*                7. Return to Login/Registration                                 *\n";
     std::cout << "**********************************************************************************\n";
 
     int choice;
+    std::string keyBlood;
+    std::string location;
 
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
@@ -565,15 +620,66 @@ void adminMenu() {
 
     case 1:
 
+        // View the res/donor info
 
+        for (userRes i : resList) {
+        
+            i.printInfo();
+        
+        }
+
+        for (userDonor i : donorList) {
+        
+            i.printInfo();
+        
+        }
+
+        adminMenu();
 
     case 2:
 
-        break;
+        // View reports based on blood group.
+
+        std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
+        std::cin >> keyBlood;
+
+        for (userDonor i : donorList) {
+
+            if (i.bloodGroup == keyBlood) {
+
+                i.printReportInfoBlood();
+
+            }
+
+        }
+
+        resMenu();
 
     case 3:
 
-        break;
+        // View reports based on location.
+
+        std::cout << "\nEnter which donor's location you like to view (Capitalize the first letter):";
+        std::cin >> location;
+
+        for (userDonor i : donorList) {
+
+            if (i.bloodGroup == location) {
+
+                i.printReportInfoLocation();
+
+            }
+
+        }
+
+        resMenu();
+
+    case 7:
+
+        // Return to login screen.
+
+        prevMenu = 1;
+        return false;
 
     default:
         break;
@@ -620,7 +726,7 @@ bool recipientLogin() {
 
                 currentRes = res;
                 currentDonor = userDonor();
-                return true;
+                menuBool = true;
 
             }
 
@@ -634,7 +740,7 @@ bool recipientLogin() {
 
         std::cout << "\n\nToo many incorrect attempts. You have been returned to the Initial Menu ";
         loginAttempts = 0;
-        return false;
+        menuBool = false;
 
     }
     else {
@@ -643,7 +749,8 @@ bool recipientLogin() {
 
     }
 
-    return false;
+    return true;
+
 }
 
 bool donorLogin() {
@@ -666,6 +773,7 @@ bool donorLogin() {
 
                 currentDonor = don;
                 currentRes = userRes();
+                menuBool = true;
                 return true;
 
             }
@@ -680,7 +788,7 @@ bool donorLogin() {
 
         std::cout << "\n\nToo many incorrect attempts. You have been returned to the Initial Menu ";
         loginAttempts = 0;
-        return false;
+        menuBool = false;
 
     }
     else {
@@ -710,7 +818,7 @@ bool adminLogin() {
         if ("password" == password) {
 
 
-            return true;
+            menuBool = true;
 
         }
 
@@ -723,7 +831,7 @@ bool adminLogin() {
 
         std::cout << "\n\nToo many incorrect attempts. You have been returned to the Initial Menu ";
         loginAttempts = 0;
-        return false;
+        menuBool = false;
 
     }
     else {
@@ -881,6 +989,8 @@ void recipientRegistration() {
 
 void initialMenu() {
 
+    prevMenu = 0;
+
     std::cout << "\n\n";
 
     std::cout << "*****************************************************\n\n";
@@ -917,11 +1027,13 @@ void initialMenu() {
 
         case 1:
 
+            recipientLogin();
 
-            if (prevMenu != 1 && recipientLogin() == true) {
+            if (prevMenu != 1 && menuBool == true) {
 
 
                 resMenu();
+                initialMenu();
 
             }
             else {
@@ -933,9 +1045,12 @@ void initialMenu() {
 
         case 2:
 
-            if (prevMenu != 1 && donorLogin() == true) {
+            donorLogin();
+
+            if (prevMenu != 1 && menuBool == true) {
 
                 donorMenu();
+                initialMenu();
 
             }
             else {
@@ -947,9 +1062,12 @@ void initialMenu() {
 
         case 3:
 
-            if (prevMenu != 1 && adminLogin() == true) {
+            adminLogin();
+
+            if (prevMenu != 1 && menuBool == true) {
 
                 adminMenu();
+                initialMenu();
 
             }
             else {
