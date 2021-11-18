@@ -122,6 +122,20 @@ struct userDonor
 
     }
 
+    void printReportInfo() {
+
+        std::cout << "\n*********************************************\n";
+
+        std::cout << "\nDonor: \t\t\t" << firstName << " " << lastName;
+        std::cout << "\nMalaria: \t\t" << malaria;
+        std::cout << "\nSyphilis: \t\t" << syphilis;
+        std::cout << "\nBrucellosis: \t\t" << brucellosis;
+        std::cout << "\nHepatitis B: \t\t" << hepatitisB;
+        std::cout << "\nHepatitis C: \t\t" << hepatitisC;
+        std::cout << "\nHIV: \t\t\t" << HIV << "\n";
+
+    }
+
 };
 
 struct userRes
@@ -394,40 +408,38 @@ int donorMenu() {
                 std::cout << "Whats is your last name?\n";
                 std::cin >> donorList[tracker].lastName;
 
-                std::cout << " Whats is your Date of birth? (Use '00/00/00' Format )                                                *\n";
+                std::cout << " Whats is your Date of birth? (Use '00/00/00' Format )\n";
                 std::cin >> donorList[tracker].dob;
 
-                std::cout << "*                                        Whats is your Nationality?                                                    *\n";
+                std::cout << " Whats is your Nationality?\n";
                 std::cin >> donorList[tracker].nationality;
 
-                std::cout << "*                                        Whats is your Ethnicity?                                                      *\n";
+                std::cout << "Whats is your Ethnicity?\n";
                 std::cin >> donorList[tracker].ethnicity;
 
-                std::cout << "*                                        Whats is your Gender?                                                         *\n";
+                std::cout << "Whats is your Gender?\n";
                 std::cin >> donorList[tracker].gender;
 
-                std::cout << "*                                        Do you have any current health conditions?                                    *\n";
+                std::cout << "Do you have any current health conditions?\n";
                 std::cin >> donorList[tracker].healthConditions;
 
-                std::cout << "*                                        Whats is your Blood Group?                                                    *\n";
+                std::cout << "Whats is your Blood Group?\n";
                 std::cin >> donorList[tracker].bloodGroup;
 
-                std::cout << "*                                        Whats is your contact email?                                                  *\n";
+                std::cout << "Whats is your contact email?\n";
                 std::cin >> donorList[tracker].email;
 
-                std::cout << "*                                        Whats is your Physical Address?                                               *\n";
+                std::cout << "Whats is your Physical Address?\n";
                 std::cin >> donorList[tracker].physAddress;
 
-                std::cout << "*                What is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you have'nt   *\n";
+                std::cout << "What is the last date of your Blood donation? (Use '00/00/00' Format or Enter 'None' if you have'nt\n";
                 std::cin >> donorList[tracker].prevDonate;
 
-                std::cout << "*                                        Enter your desired Username                                                   *\n";
+                std::cout << "Enter your desired Username\n";
                 std::cin >> donorList[tracker].username;
 
-                std::cout << "*                                        Enter your desired Password                                                   *\n";
+                std::cout << "Enter your desired Password\n";
                 std::cin >> donorList[tracker].password;
-                std::cout << "*                                                                                                                      *\n";
-                std::cout << "************************************************************************************************************************\n";
 
             }
             else {
@@ -613,6 +625,11 @@ int adminMenu() {
     std::string keyBlood;
     std::string location;
 
+    std::string firstName;
+    std::string lastName;
+
+    int counter = 0;
+
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
 
@@ -673,6 +690,61 @@ int adminMenu() {
         }
 
         adminMenu();
+
+    case 4:
+
+        // Print all Donor reports
+
+        for (userDonor i : donorList) {
+        
+            i.printReportInfo();
+        
+        }
+
+    case 5:
+
+        // Print all Res reports (Personal Info)
+
+        for (userRes i : resList) {
+        
+            i.printInfo();
+        
+        }
+
+    case 6:
+
+        // Update a specified donor's report.
+
+        std::cout << "Please Enter the first name of the donor that you would like to update (Report): \n";
+        std::cin >> firstName;
+
+        std::cout << "Please Enter the last name of the donor that you would like to update (Report): \n";
+        std::cin >> lastName;
+
+        for (userDonor i : donorList) {
+        
+            if (i.firstName == firstName && i.lastName == lastName) {
+
+                std::cout << "\nEnter Positive or Negative on Malaria Status: ";
+                std::cin >> donorList[counter].malaria;
+                std::cout << "\nEnter Positive or Negative on Syphilis Status: ";
+                std::cin >> donorList[counter].syphilis;
+                std::cout << "\nEnter Positive or Negative on Brucellosis Status: ";
+                std::cin >> donorList[counter].brucellosis;
+                std::cout << "\nEnter Positive or Negative on HepatitisB Status: ";
+                std::cin >> donorList[counter].hepatitisB;
+                std::cout << "\nEnter Positive or Negative on HepatitisC Status: ";
+                std::cin >> donorList[counter].hepatitisC;
+                std::cout << "\nEnter Positive or Negative on HIV Status: ";
+                std::cin >> donorList[counter].HIV;
+                std::cout << "\n";
+
+            }
+
+            counter++;
+        
+        }
+
 
     case 7:
 
