@@ -1,5 +1,5 @@
 ﻿  CS103-GroupProject.cpp
-C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(499): warning C4715: 'donorMenu': not all control paths return a value
-C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(608): warning C4715: 'resMenu': not all control paths return a value
-C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(759): warning C4715: 'adminMenu': not all control paths return a value
+C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(505): warning C4715: 'donorMenu': not all control paths return a value
+C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(613): warning C4715: 'resMenu': not all control paths return a value
+C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\CS103-GroupProject.cpp(775): warning C4715: 'adminMenu': not all control paths return a value
   CS103-GroupProject.vcxproj -> C:\Users\Charles\Desktop\Yoobee\CS103\Exercise\CS103-GroupProject\x64\Debug\CS103-GroupProject.exe

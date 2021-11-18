@@ -346,6 +346,7 @@ void checkDate(userDonor* i) {
 }
 
 int donorMenu() {
+
     std::cout << "\n\t\t Donor Menu\n\n";
     std::cout << "**************************************************************\n";
     std::cout << "*                                                            *\n";
@@ -364,12 +365,12 @@ int donorMenu() {
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
 
-    switch (choice)
-    {
+        
+
+    if (choice == 1) {
 
         // Procedure to donate blood:
-
-    case 1:
+    
         std::cout << "********************************************************************************************************************************************\n";
         std::cout << "*                                                                                                                                          *\n";
         std::cout << "*             A blood donation can take up to 60 minutes (includes registration, donation and recovery).                                   *\n";
@@ -380,9 +381,12 @@ int donorMenu() {
 
         donorMenu();
 
+    }
+        
+    else if (choice == 2) {
+    
         //Benefits of blood donations
 
-    case 2:
         std::cout << "********************************************************************************************************************************************\n";
         std::cout << "*                                                                                                                                          *\n";
         std::cout << "*                                Giving blood may lower your risk of sffering a heart attack.                                              *\n";
@@ -390,10 +394,13 @@ int donorMenu() {
         std::cout << "*                                Giving blood can reduce harmful iron stores                                                               *\n";
         std::cout << "*                                                                                                                                          *\n";
         std::cout << "********************************************************************************************************************************************\n";
+
         donorMenu();
-
-    case 3:
-
+    
+    }
+       
+    else if (choice == 3) {
+    
         //manage info
 
         tracker = 0;
@@ -451,10 +458,11 @@ int donorMenu() {
         }
 
         donorMenu();
+    
+    }
 
-
-    case 4:
-
+    else if(choice == 4){
+    
         tracker = 0;
 
         for (userDonor d : donorList) {
@@ -484,16 +492,14 @@ int donorMenu() {
             }
 
         }
+        
+    }
 
-
-
-    case 5:
-
+    else{
+    
         prevMenu = 1;
         return false;
-
-    default:
-        break;
+    
     }
 
 }
@@ -523,10 +529,9 @@ int resMenu() {
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
 
-    switch (choice) {
 
-    case 1:
-
+    if (choice == 1) {
+    
         // Access Donor's info by blood Group
 
         std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
@@ -543,9 +548,12 @@ int resMenu() {
         }
 
         resMenu();
+    
+    }
 
-    case 2:
 
+    else if (choice == 2) {
+    
         // Access Donor's info by  blood Group AND location.
 
         std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
@@ -565,10 +573,11 @@ int resMenu() {
         }
 
         resMenu();
+    
+    }
 
-
-    case 3:
-
+    else if (choice == 3) {
+    
         // Access donor's info by giving full name.
 
         std::cout << "\nEnter which donor's First Name you like to view (Capitalize the letter):";
@@ -588,22 +597,18 @@ int resMenu() {
         }
 
         resMenu();
+    
+    
+    }
 
-    case 4:
-
+    else {
+    
         // Return to login screen.
 
         prevMenu = 1;
         return false;
-
-
-    default:
-
-        break;
-
+    
     }
-
-
 
 }
 
@@ -633,28 +638,30 @@ int adminMenu() {
     std::cout << "\n\nPlease select a choice by entering the coresponding number. ";
     std::cin >> choice;
 
-    switch (choice) {
-
-    case 1:
-
+    if (choice == 1) {
+    
+    
         // View the res/donor info
 
         for (userRes i : resList) {
-        
+
             i.printInfo();
-        
+
         }
 
         for (userDonor i : donorList) {
-        
+
             i.printInfo();
-        
+
         }
 
         adminMenu();
+    
+    
+    }
 
-    case 2:
-
+    else if (choice == 2) {
+    
         // View reports based on blood group.
 
         std::cout << "\nEnter which donor blood group you like to view (Capitalize the letter):";
@@ -671,9 +678,11 @@ int adminMenu() {
         }
 
         adminMenu();
+    
+    }
 
-    case 3:
-
+    else if (choice == 3) {
+    
         // View reports based on location.
 
         std::cout << "\nEnter which donor's location you like to view (Capitalize the first letter):";
@@ -690,29 +699,36 @@ int adminMenu() {
         }
 
         adminMenu();
+    
+    }
 
-    case 4:
-
+    else if (choice == 4) {
+    
         // Print all Donor reports
 
         for (userDonor i : donorList) {
-        
+
             i.printReportInfo();
-        
+
         }
+    
+    }
 
-    case 5:
-
+    else if (choice == 5) {
+    
         // Print all Res reports (Personal Info)
 
         for (userRes i : resList) {
-        
+
             i.printInfo();
-        
+
         }
+    
+    
+    }
 
-    case 6:
-
+    else if (choice == 6) {
+    
         // Update a specified donor's report.
 
         std::cout << "Please Enter the first name of the donor that you would like to update (Report): \n";
@@ -722,7 +738,7 @@ int adminMenu() {
         std::cin >> lastName;
 
         for (userDonor i : donorList) {
-        
+
             if (i.firstName == firstName && i.lastName == lastName) {
 
                 std::cout << "\nEnter Positive or Negative on Malaria Status: ";
@@ -742,20 +758,20 @@ int adminMenu() {
             }
 
             counter++;
-        
+
         }
-
-
-    case 7:
+    
+    }
+    
+    else {
 
         // Return to login screen.
 
         prevMenu = 1;
         return false;
 
-    default:
-        break;
     }
+
 }
 
 // Introduction
@@ -1081,11 +1097,9 @@ void initialMenu() {
 
     std::cout << std::endl;
 
-    switch (firstChoice)
-    {
 
-    case 1: // Login
-
+    if (firstChoice == 1) {
+    
         std::cout << "\n\t    Please Select your user type\n\n";
 
         std::cout << "*****************************************************\n";
@@ -1098,10 +1112,8 @@ void initialMenu() {
 
         std::cin >> loginTypeChoice;
 
-        switch (loginTypeChoice)
-        {
 
-        case 1:
+        if (loginTypeChoice == 1) {
 
             recipientLogin();
 
@@ -1119,7 +1131,9 @@ void initialMenu() {
 
             }
 
-        case 2:
+        }
+
+        else if (loginTypeChoice == 2) {
 
             donorLogin();
 
@@ -1136,7 +1150,9 @@ void initialMenu() {
 
             }
 
-        case 3:
+        }
+
+        else if (loginTypeChoice == 3) {
 
             adminLogin();
 
@@ -1153,13 +1169,21 @@ void initialMenu() {
 
             }
 
-        default:
-            break;
         }
 
-        // Registration
-    case 2:
+        else {
 
+            std::cout << "\nPlease enter valid option.\n";
+
+        }
+        
+    
+    }
+     
+
+        // Registration
+    else if (firstChoice == 2) {
+    
         std::cout << "\n";
 
         std::cout << "           Are you a Donor or Recipient?\n";
@@ -1174,27 +1198,28 @@ void initialMenu() {
 
         std::cout << "\n\n";
 
-        switch (registrationTypeChoice)
-        {
-
-        case 1:
-
+        if (registrationTypeChoice == 1) {
+        
             recipientRegistration();
             initialMenu();
-
-        case 2:
-
+        
+        }
+        
+        else if (registrationTypeChoice == 2) {
+        
             donorRegistration();
             initialMenu();
-
-        default:
-            break;
+        
         }
 
+        else {
 
-    default:
-        break;
-    }
+            std::cout << "\nPlease enter valid option.\n";
+
+        }
+    
+    }   
+
 }
 
 int main()
