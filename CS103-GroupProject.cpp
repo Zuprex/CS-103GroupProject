@@ -653,7 +653,7 @@ int adminMenu() {
 
         }
 
-        resMenu();
+        adminMenu();
 
     case 3:
 
@@ -664,7 +664,7 @@ int adminMenu() {
 
         for (userDonor i : donorList) {
 
-            if (i.bloodGroup == location) {
+            if (i.physAddress == location) {
 
                 i.printReportInfoLocation();
 
@@ -672,7 +672,7 @@ int adminMenu() {
 
         }
 
-        resMenu();
+        adminMenu();
 
     case 7:
 
@@ -727,6 +727,8 @@ bool recipientLogin() {
                 currentRes = res;
                 currentDonor = userDonor();
                 menuBool = true;
+                loginAttempts = 0;
+                return true;
 
             }
 
@@ -774,6 +776,7 @@ bool donorLogin() {
                 currentDonor = don;
                 currentRes = userRes();
                 menuBool = true;
+                loginAttempts = 0;
                 return true;
 
             }
@@ -817,8 +820,9 @@ bool adminLogin() {
 
         if ("password" == password) {
 
-
+            loginAttempts = 0;
             menuBool = true;
+            return true;
 
         }
 
